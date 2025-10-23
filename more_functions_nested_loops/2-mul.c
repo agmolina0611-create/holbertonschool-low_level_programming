@@ -5,7 +5,7 @@
  *@b: second integer
  *Return: Multiplies two integeres
  */
-int mul(int a, int b);
+int mul(int a, int b)
 {
 	return (a * b);
 }
