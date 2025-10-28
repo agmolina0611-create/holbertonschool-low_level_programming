@@ -1,3 +1,4 @@
+/* 100-atoi.c */
 #include "main.h"
 #include <limits.h>
 /**
@@ -11,7 +12,7 @@ int _atoi(char *s)
 	int sign = 1;
 	int res = 0;
 
-	/* skip non-digits, count all preceding '-' (each flips the sign) */
+	/* skip non-digits; each '-' flips sign, '+' is ignored */
 	while (s[i] != '\0' && (s[i] < '0' || s[i] > '9'))
 	{
 		if (s[i] == '-')
@@ -21,7 +22,7 @@ int _atoi(char *s)
 		i++;
 	}
 
-	/* parse the digit run */
+	/* parse the first digit run */
 	while (s[i] >= '0' && s[i] <= '9')
 	{
 		int d = s[i] - '0';
@@ -36,7 +37,7 @@ int _atoi(char *s)
 		}
 		else
 		{
-			/* build as negative to handle INT_MIN safely */
+			/* build as negative to safely reach INT_MIN */
 			if (res < (INT_MIN + d) / 10)
 			{
 				return (INT_MIN);
