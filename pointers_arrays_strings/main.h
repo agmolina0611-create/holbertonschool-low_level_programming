@@ -2,6 +2,6 @@
 #define MAIN_H
 
 int _putchar(char c);
-char *leet(char *s);
+int _atoi(char *s);
 
 #endif
