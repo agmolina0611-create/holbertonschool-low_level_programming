@@ -1,68 +1,50 @@
 #include "main.h"
 #include <limits.h>
-
 /**
- * _atoi - converts a string to an integer (like atoi)
- * @s: pointer to the string
- *
- * Description:
- * - Skips any leading non-digits while counting all preceding '+'/'-' signs.
- * - Each '-' flips the sign.
- * - Parses the first contiguous digit run.
- * - Clamps on overflow to INT_MAX / INT_MIN.
- * - Returns 0 if no digits are found.
- *
- * Return: the converted int value (clamped on overflow)
+ * _atoi - converts a string to int (like atoi)
+ * @s: input string
+ * Return: converted value (clamped on overflow), or 0 if no digits
  */
 int _atoi(char *s)
 {
-	int i = 0, sign = 1, started = 0;
-	int result = 0;
+	int i = 0;
+	int sign = 1;
+	int res = 0;
 
-	while (s[i] != '\0')
+	/* skip non-digits, count all preceding '-' (each flips the sign) */
+	while (s[i] != '\0' && (s[i] < '0' || s[i] > '9'))
 	{
-		if (!started)
+		if (s[i] == '-')
 		{
-			if (s[i] == '-')
-			{
-				sign = -sign;
-				i++;
-				continue;
-			}
-			if (s[i] == '+')
-			{
-				i++;
-				continue;
-			}
-			if (s[i] >= '0' && s[i] <= '9')
-				started = 1;
-			else
-			{
-				i++;
-				continue;
-			}
+			sign = -sign;
 		}
-
-		/* digit parsing */
-		if (s[i] >= '0' && s[i] <= '9')
-		{
-			int d = s[i] - '0';
-
-			/* overflow check before result = result * 10 + d */
-			if (result > (INT_MAX - d) / 10)
-				return (sign == 1 ? INT_MAX : INT_MIN);
-
-			result = result * 10 + d;
-			i++;
-			continue;
-		}
-
-		/* non-digit after digits: stop */
-		break;
+		i++;
 	}
 
-	if (!started)
-		return (0);
+	/* parse the digit run */
+	while (s[i] >= '0' && s[i] <= '9')
+	{
+		int d = s[i] - '0';
 
-	return (sign == 1 ? result : -result);
+		if (sign == 1)
+		{
+			if (res > (INT_MAX - d) / 10)
+			{
+				return (INT_MAX);
+			}
+			res = (res * 10) + d;
+		}
+		else
+		{
+			/* build as negative to handle INT_MIN safely */
+			if (res < (INT_MIN + d) / 10)
+			{
+				return (INT_MIN);
+			}
+			res = (res * 10) - d;
+		}
+		i++;
+	}
+
+	return (res);
 }
