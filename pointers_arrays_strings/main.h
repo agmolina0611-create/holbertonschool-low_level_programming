@@ -2,6 +2,6 @@
 #define MAIN_H
 
 int _putchar(char c);
-char *_strchr(char *s, char c);
+unsigned int_strspn(char *s, char *accept);
 
 #endif
