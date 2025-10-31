@@ -20,3 +20,13 @@ OTHER EXERCISES:
 - *Always look up* - Write a function that changes all lowercase letters of a string to uppercase.
 - *Expect the best. Prepare for the worst. Capitalize on what comes* - Write a function that capitalizes all words of a string.
 - *Mozart composed his music not for the elite, but for everybody* - Write a function that encodes a string into 1337.
+
+THIRD ROUND OF EXERCISES:
+- *memset* - Write a function that fills memory with a constant byte.
+- *memcpy* - Write a function that copies memory area.
+- *strchr* - Write a function that locates a character in a string.
+- *strspn* - Write a function that gets the length of a prefix substring.
+- *strpbrk* - Write a function that searches a string for any of a set of bytes.
+- *strstr* - Write a function that locates a substring.
+- *Chess is mental torture* - Write a function that prints the chessboard.
+- *The line of life is a ragged diagonal between duty and desire* - Write a function that prints the sum of the two diagonals of a square matrix of integers.
