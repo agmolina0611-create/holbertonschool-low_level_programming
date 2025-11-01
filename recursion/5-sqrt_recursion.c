@@ -1,25 +1,28 @@
-static int _sqrt_guess(int n, int g)
+#include "main.h"
+
+/**
+ * find_sqrt - helper function to find the natural square root
+ * @n: number to find the square root of
+ * @i: iterator (possible square root)
+ * Return: the natural square root, or -1 if none
+ */
+int find_sqrt(int n, int i)
 {
-	if (g > n / g)
+	if (i * i > n)
 		return (-1);
-
-	if (g == n / g && (g * g) == n)
-		return (g);
-
-	return (_sqrt_guess(n, g + 1));
+	if (i * i == n)
+		return (i);
+	return (find_sqrt(n, i + 1));
 }
 
 /**
- * _sqrt_recursion - devuelve la raíz cuadrada natural de n
- * @n: número entero
- * Return: raíz cuadrada natural de n; si no existe, -1
+ * _sqrt_recursion - returns the natural square root of a number
+ * @n: number to calculate the square root of
+ * Return: the natural square root, or -1 if none
  */
 int _sqrt_recursion(int n)
 {
 	if (n < 0)
 		return (-1);
-	if (n == 0 || n == 1)
-		return (n);
-
-	return (_sqrt_guess(n, 1));
+	return (find_sqrt(n, 0));
 }
